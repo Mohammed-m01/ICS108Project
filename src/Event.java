@@ -1,6 +1,5 @@
 public abstract class Event {
     // Member Variables
-    private static int eventsNumber = 0;
     private String eventName;
 
 
@@ -9,7 +8,7 @@ public abstract class Event {
 
     // Member Methods
     public Event (){
-        eventsNumber++;
+
     }
 
     public void setEventName (String eventName){
@@ -23,7 +22,7 @@ public abstract class Event {
     @Override
     public String toString(){
 
-        return "Number of events:\t" + eventsNumber + "\nEvent name:\t" + eventName;
+        return "Event name:\t" + eventName +"\n";
 
     }
 }

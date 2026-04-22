@@ -5,11 +5,16 @@ public class Sports extends Event {
     protected Stadium venue ;
 
     public Sports(){
-        Stadium venue = new Stadium();
+         venue = new Stadium();
     }
     public void setSportName(String sportName) {
         this.sportName = sportName;
     }
 
+    @Override
+    public String toString(){
+        return super.toString() +"Event Genre:\t" + eventGenre +"\n" + "Sponsor:\t" + Sponsor +"\n" + "Sport Name:\t" + sportName +"\n"
+                + venue.toString();
+    }
 
 }

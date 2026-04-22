@@ -21,5 +21,10 @@ public class Venue {
         this.location = location;
     }
 
+    @Override
+    public String toString(){
+        return "Capacity:\t" + capacity +"\n" + "Location:\t" + location +"\n" ;
+    }
+
 
 }
