@@ -8,9 +8,8 @@ public class Main {
         System.out.println("Welcome to EVENT-MANAGER");
 
         System.out.println("(1) Add Event");
-        System.out.println("(2) Edit Scheduled Events");
-        System.out.println("(3) Remove Event");
-        System.out.println("(4) Display Events");
+        System.out.println("(2) Remove Event");
+        System.out.println("(3) Display Events");
 
         getUserOption();
     }
@@ -28,6 +27,10 @@ public class Main {
         Scanner scnr = new Scanner(System.in);
         displayMenu();
 
+        Stadium test = new Stadium();
+        System.out.println(test.setStartTime("11:20"));
+        System.out.println(test.setEndTime("20:32"));
+        System.out.println(test.setStartTime("18:32"));
 
 
 
