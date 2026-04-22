@@ -5,14 +5,16 @@ public abstract class Event {
 
 
 
+
+
     // Member Methods
     public Event (){
         eventsNumber++;
     }
 
-    public Event (String eventName){
+    public void setEventName (String eventName){
         this.eventName = eventName;
-        eventsNumber++;
+
     }
 
 
