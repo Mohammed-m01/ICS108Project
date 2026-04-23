@@ -97,14 +97,15 @@ public class Main {
                     eventList.get(i).setEventName(getUserInput(scnr));
 
                     if(eventList.get(i) instanceof Sports){
+                        Sports sportsE = (Sports) eventList.get(i);
                         System.out.println("Enter Sport Name:");
-                        ((Sports) eventList.get(i)).setSportName(getUserInput(scnr));
+                        sportsE.setSportName(getUserInput(scnr));
 
                         System.out.println("Enter Start Time in this format(EX 11:23):");
-                        while(!((Sports) eventList.get(i)).venue.setStartTime(getUserInput(scnr))){((Sports) eventList.get(i)).venue.setStartTime(getUserInput(scnr));}
+                        while(!sportsE.venue.setStartTime(getUserInput(scnr))){}
 
                         System.out.println("Enter End Time in this format(EX 13:23):");
-                        while(!((Sports) eventList.get(i)).venue.setEndTime(getUserInput(scnr))){((Sports) eventList.get(i)).venue.setEndTime(getUserInput(scnr));}
+                        while(!sportsE.venue.setEndTime(getUserInput(scnr))){}
 
                     }
                     else if (eventList.get(i) instanceof Social){
@@ -135,9 +136,9 @@ public class Main {
                     System.out.println("Displaying Events");
                     System.out.println("Number of Events :" + eventList.size());
                     for(Event event : eventList){
-                        System.out.println("\n=====================================\n");
+                        System.out.println("\n=====================================");
                         System.out.println(event.toString());
-                        System.out.println("\n=====================================\n");
+                        System.out.println("=====================================\n");
                     }
 
 
