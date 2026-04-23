@@ -2,10 +2,22 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
-
+    public static void asciiLogo(){
+        System.out.println("\n /$$$$$$$$ /$$    /$$ /$$$$$$$$ /$$   /$$ /$$$$$$$$      /$$      /$$  /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$ \n" +
+                "| $$_____/| $$   | $$| $$_____/| $$$ | $$|__  $$__/     | $$$    /$$$ /$$__  $$| $$$ | $$ /$$__  $$ /$$__  $$| $$_____/| $$__  $$\n" +
+                "| $$      | $$   | $$| $$      | $$$$| $$   | $$        | $$$$  /$$$$| $$  \\ $$| $$$$| $$| $$  \\ $$| $$  \\__/| $$      | $$  \\ $$\n" +
+                "| $$$$$   |  $$ / $$/| $$$$$   | $$ $$ $$   | $$ /$$$$$$| $$ $$/$$ $$| $$$$$$$$| $$ $$ $$| $$$$$$$$| $$ /$$$$| $$$$$   | $$$$$$$/\n" +
+                "| $$__/    \\  $$ $$/ | $$__/   | $$  $$$$   | $$|______/| $$  $$$| $$| $$__  $$| $$  $$$$| $$__  $$| $$|_  $$| $$__/   | $$__  $$\n" +
+                "| $$        \\  $$$/  | $$      | $$\\  $$$   | $$        | $$\\  $ | $$| $$  | $$| $$\\  $$$| $$  | $$| $$  \\ $$| $$      | $$  \\ $$\n" +
+                "| $$$$$$$$   \\  $/   | $$$$$$$$| $$ \\  $$   | $$        | $$ \\/  | $$| $$  | $$| $$ \\  $$| $$  | $$|  $$$$$$/| $$$$$$$$| $$  | $$\n" +
+                "|________/    \\_/    |________/|__/  \\__/   |__/        |__/     |__/|__/  |__/|__/  \\__/|__/  |__/ \\______/ |________/|__/  |__/\n" +
+                "                                                                                                                                 \n" +
+                "                                                                                                                                 \n" +
+                "                                                                                                                                 ");
+    }
     public static int displayMenu(Scanner scnr) {
 
-        System.out.println("\nWelcome to EVENT-MANAGER MainMenu\n");
+        System.out.println("Welcome to EVENT-MANAGER MainMenu\n");
 
         System.out.println("(1) Add Event");
         System.out.println("(2) Remove Event");
@@ -70,15 +82,20 @@ public class Main {
 
         Scanner scnr = new Scanner(System.in);
         ArrayList<Event> eventList = new ArrayList<>();
-        int i = 0;
+        asciiLogo();
+
+
 
         while(true){
             switch (displayMenu(scnr)){
                 case 1:
                     System.out.println("Adding Event");
                     createEventObject(scnr, eventList);
+                    int i = eventList.size()-1;
+
                     System.out.println("Enter Event Name:");
                     eventList.get(i).setEventName(getUserInput(scnr));
+
                     if(eventList.get(i) instanceof Sports){
                         System.out.println("Enter Sport Name:");
                         ((Sports) eventList.get(i)).setSportName(getUserInput(scnr));
@@ -106,7 +123,7 @@ public class Main {
 
 
 
-                    ++i;
+
                     break;
                 case 2:
                     System.out.println("Removing Event");

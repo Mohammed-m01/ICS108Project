@@ -28,7 +28,8 @@ public class Stadium extends Venue{
             return true;
         }
         else  {
-            for (int i = 0; i < TimeTable.size(); i+= 2) {
+
+            for (int i = 0; i + 1 < TimeTable.size(); i+= 2) {
                 int strt  = TimeTable.get(i);
                 int finsh = TimeTable.get(i+1);
                 if(TotalInMin > strt && TotalInMin < finsh) {
@@ -62,7 +63,7 @@ public class Stadium extends Venue{
                 return true;
             }
             else  {
-                for (int i = 0; i < TimeTable.size(); i += 2) {
+                for (int i = 0; i + 1 < TimeTable.size(); i += 2) {
                     int strt  = TimeTable.get(i);
                     int finsh = TimeTable.get(i+1);
                     if(TotalInMin > strt && TotalInMin < finsh) {
