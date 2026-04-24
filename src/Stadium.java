@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 public class Stadium extends Venue{
-    private int startTime;// These values will be stored as a sum of total minutes.
-    private int endTime;
-    private String ST;
-    private String ET;
 
-    private static ArrayList<Integer> TimeTable = new ArrayList<>();
+    private static ArrayList<Integer> stadiumTimeTable = new ArrayList<>();
+
+    @Override
+    protected ArrayList<Integer> getTimeTable() {
+        return stadiumTimeTable;
+    }
+
 
     public Stadium(){
         setCapacity(200);
@@ -14,7 +16,7 @@ public class Stadium extends Venue{
 
     @Override
     public String toString(){
-        return super.toString() +"\nStart Time:    " + ST +"  " + "End Time:    " + ET +"\n" ;
+        return super.toString() +"\nStart Time:  " + ST +"  " + "End Time:  " + ET  ;
     }
 
 

@@ -7,11 +7,17 @@ public class Venue {
     protected int endTime;
     protected String ST;
     protected String ET;
+    private String date;
 
     protected ArrayList<Integer> TimeTable = new ArrayList<>();
 
+    protected ArrayList<Integer> getTimeTable() {
+        return TimeTable;
+    }
 
-
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public int getCapacity() {
         return capacity;
@@ -36,18 +42,18 @@ public class Venue {
         int TotalInMin = Integer.parseInt(Time[1]) + 60 *Integer.parseInt(Time[0]);
 
 
-        if(TimeTable.isEmpty()){
+        if(getTimeTable().isEmpty()){
             ST = startTime;
             this.startTime = TotalInMin;
-            TimeTable.add(TotalInMin);
+            getTimeTable().add(TotalInMin);
 
             return true;
         }
         else  {
 
-            for (int i = 0; i + 1 < TimeTable.size(); i+= 2) {
-                int strt  = TimeTable.get(i);
-                int finsh = TimeTable.get(i+1);
+            for (int i = 0; i + 1 < getTimeTable().size(); i+= 2) {
+                int strt  = getTimeTable().get(i);
+                int finsh = getTimeTable().get(i+1);
                 if(TotalInMin >= strt && TotalInMin <= finsh) {
                     System.out.println("Overlap detected...Input different time \nENTER NEW VALUE :");
                     return false;
@@ -55,7 +61,7 @@ public class Venue {
             }
             ST = startTime;
             this.startTime = TotalInMin;
-            TimeTable.add(TotalInMin);
+            getTimeTable().add(TotalInMin);
             return true;
         }
 
@@ -72,16 +78,16 @@ public class Venue {
         }
 
         else {
-            if(TimeTable.size() == 1){
+            if(getTimeTable().size() == 1){
                 ET = endTime;
                 this.endTime = TotalInMin;
-                TimeTable.add(TotalInMin);
+                getTimeTable().add(TotalInMin);
                 return true;
             }
             else  {
-                for (int i = 0; i + 1 < TimeTable.size(); i += 2) {
-                    int strt  = TimeTable.get(i);
-                    int finsh = TimeTable.get(i+1);
+                for (int i = 0; i + 1 < getTimeTable().size(); i += 2) {
+                    int strt  = getTimeTable().get(i);
+                    int finsh = getTimeTable().get(i+1);
                     if(TotalInMin >= strt && TotalInMin <= finsh) {
                         System.out.println("Overlap detected...Input different time \nENTER NEW VALUE :");
                         return false;
@@ -89,7 +95,7 @@ public class Venue {
                 }
                 ET = endTime;
                 this.endTime = TotalInMin;
-                TimeTable.add(TotalInMin);
+                getTimeTable().add(TotalInMin);
                 return true;
             }
 
@@ -104,7 +110,7 @@ public class Venue {
 
     @Override
     public String toString(){
-        return   "\nLocation:   " + location +"    Capacity:   " + capacity ;
+        return   "\nLocation:  " + location +"\nCapacity: " + capacity +"\nDate: " + date ;
     }
 
 }
