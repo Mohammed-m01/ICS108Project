@@ -150,11 +150,11 @@ public class Main {
                         System.out.print("Enter Event Name:  ");
                         cEvent.setEventName(getUserInput(scnr));
 
-                        System.out.print("Enter Event Date (Ex:dd/mm):");
-                        cEvent.venue.setDate(getUserInput(scnr));
-
                         specifyVenueObject(scnr, eventList, eventNum);
                         cEvent.fillSpecificInfo(scnr);
+
+                        System.out.print("Enter Event Date (Ex:dd/mm):");
+                        cEvent.venue.setDate(getUserInput(scnr));
 
                         System.out.print("Enter Start Time in this format(EX 11:23):  ");
                         while (!cEvent.venue.setStartTime(getUserInput(scnr))) {
