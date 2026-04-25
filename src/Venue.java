@@ -103,6 +103,9 @@ public class Venue {
         int TotalInMin = Integer.parseInt(Time[1]) + 60 *Integer.parseInt(Time[0]);
 
         for(Event event : eventlist){
+            if (event.venue == this)
+                continue;
+
             if(this.date.equals(event.venue.getDate()))
                 dateMatch = true;
         }
@@ -124,7 +127,7 @@ public class Venue {
                     for (int i = 0; i + 1 < getTimeTable().size(); i += 2) {
                         int strt = getTimeTable().get(i);
                         int finsh = getTimeTable().get(i + 1);
-                        if (TotalInMin >= strt && TotalInMin <= finsh) {
+                        if (startTime < finsh && TotalInMin > strt) {
                             System.out.println("Overlap detected...Input different time \nENTER NEW VALUE :");
                             return false;
                         }
