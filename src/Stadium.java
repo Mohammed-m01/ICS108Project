@@ -1,13 +1,4 @@
-import java.util.ArrayList;
 public class Stadium extends Venue{
-
-    private static ArrayList<Integer> stadiumTimeTable = new ArrayList<>();
-
-    @Override
-    protected ArrayList<Integer> getTimeTable() {
-        return stadiumTimeTable;
-    }
-
 
     public Stadium(){
         setCapacity(200);

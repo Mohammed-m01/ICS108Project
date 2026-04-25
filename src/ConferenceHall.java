@@ -1,13 +1,4 @@
-import java.util.ArrayList;
-
 public class ConferenceHall extends Venue{
-
-    private static ArrayList<Integer> ConfHallTimeTable = new ArrayList<>();
-
-    @Override
-    protected ArrayList<Integer> getTimeTable() {
-        return ConfHallTimeTable;
-    }
 
 
     public ConferenceHall(){

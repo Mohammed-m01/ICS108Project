@@ -9,11 +9,7 @@ public class Venue {
     protected String ET;
     private String date;
 
-    protected ArrayList<Integer> TimeTable = new ArrayList<>();
 
-    protected ArrayList<Integer> getTimeTable() {
-        return TimeTable;
-    }
 
     public boolean setDate(String date) {
         String[] dateL = date.split("/");
@@ -51,102 +47,60 @@ public class Venue {
 
     // NOTE: TIME Should be entered as a string in a 24 format similar to 22:30
     public boolean setStartTime(String startTime, ArrayList<Event> eventlist){
-        boolean dateMatch = false;
-
         String[] Time = startTime.split(":");
-        int TotalInMin = Integer.parseInt(Time[1]) + 60 *Integer.parseInt(Time[0]);
+        int TotalInMin = Integer.parseInt(Time[1]) + 60 * Integer.parseInt(Time[0]);
 
-        for(Event event : eventlist){
-            if(this.date.equals(event.venue.getDate()))
-                dateMatch = true;
-        }
+        for (Event event : eventlist) {
+            // Skip checking the current event against itself
+            if (event.venue == this) continue;
 
-        if(dateMatch) {
+            // Check if the event is at the same venue AND on the same date
+            if (event.venue != null && event.venue.getClass() == this.getClass() && this.date.equals(event.venue.getDate())) {
 
-            if (getTimeTable().isEmpty()) {
-                ST = startTime;
-                this.startTime = TotalInMin;
-                getTimeTable().add(TotalInMin);
-
-                return true;
-            } else {
-
-                for (int i = 0; i + 1 < getTimeTable().size(); i += 2) {
-                    int strt = getTimeTable().get(i);
-                    int finsh = getTimeTable().get(i + 1);
-                    if (TotalInMin >= strt && TotalInMin <= finsh) {
-                        System.out.println("Overlap detected...Input different time \nENTER NEW VALUE :");
-                        return false;
-                    }
+                // If the new start time falls inside an already scheduled event
+                if (TotalInMin >= event.venue.startTime && TotalInMin <= event.venue.endTime) {
+                    System.out.println("Overlap detected with another event on this date... Input different time \nENTER NEW VALUE :");
+                    return false;
                 }
-                ST = startTime;
-                this.startTime = TotalInMin;
-                getTimeTable().add(TotalInMin);
-                return true;
             }
         }
 
-        else{
-            ST = startTime;
-            this.startTime = TotalInMin;
-            getTimeTable().add(TotalInMin);
-            return true;
-
-        }
-
+        ST = startTime;
+        this.startTime = TotalInMin;
+        return true;
     }
 
     public boolean setEndTime(String endTime, ArrayList<Event> eventlist){
-        boolean dateMatch = false;
-
         String[] Time = endTime.split(":");
-        int TotalInMin = Integer.parseInt(Time[1]) + 60 *Integer.parseInt(Time[0]);
+        int TotalInMin = Integer.parseInt(Time[1]) + 60 * Integer.parseInt(Time[0]);
 
-        for(Event event : eventlist){
-            if (event.venue == this)
-                continue;
-
-            if(this.date.equals(event.venue.getDate()))
-                dateMatch = true;
-        }
-
-        if(!validateTime(TotalInMin)) {
+        if (!validateTime(TotalInMin)) {
             System.out.println("Wrong Time...endTime must be after start\nENTER NEW VALUE :");
             return false;
         }
 
-        else {
+        for (Event event : eventlist) {
+            if (event.venue == this) continue;
 
-            if(dateMatch) {
-                if (getTimeTable().size() == 1) {
-                    ET = endTime;
-                    this.endTime = TotalInMin;
-                    getTimeTable().add(TotalInMin);
-                    return true;
-                } else {
-                    for (int i = 0; i + 1 < getTimeTable().size(); i += 2) {
-                        int strt = getTimeTable().get(i);
-                        int finsh = getTimeTable().get(i + 1);
-                        if (startTime < finsh && TotalInMin > strt) {
-                            System.out.println("Overlap detected...Input different time \nENTER NEW VALUE :");
-                            return false;
-                        }
-                    }
-                    ET = endTime;
-                    this.endTime = TotalInMin;
-                    getTimeTable().add(TotalInMin);
-                    return true;
+            if (event.venue != null && event.venue.getClass() == this.getClass() && this.date.equals(event.venue.getDate())) {
+
+                // If the new end time falls inside an already scheduled event
+                if (TotalInMin > event.venue.startTime && TotalInMin <= event.venue.endTime) {
+                    System.out.println("Overlap detected with another event on this date... Input different time \nENTER NEW VALUE :");
+                    return false;
+                }
+
+                // If the new event completely swallows/envelops an existing event
+                if (this.startTime <= event.venue.startTime && TotalInMin >= event.venue.endTime) {
+                    System.out.println("Overlap detected (envelops another event)... Input different time \nENTER NEW VALUE :");
+                    return false;
                 }
             }
-
-            else{
-                ET = endTime;
-                this.endTime = TotalInMin;
-                getTimeTable().add(TotalInMin);
-                return true;
-            }
-
         }
+
+        ET = endTime;
+        this.endTime = TotalInMin;
+        return true;
     }
 
     // To ensure the end is after the start.

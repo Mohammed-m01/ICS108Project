@@ -1,14 +1,4 @@
-import java.util.ArrayList;
-
 public class UniversityBeach extends Venue{
-
-    private static ArrayList<Integer> UniBeachTimeTable = new ArrayList<>();
-
-    @Override
-    protected ArrayList<Integer> getTimeTable() {
-        return UniBeachTimeTable;
-    }
-
 
     public UniversityBeach(){
         setCapacity(180);
