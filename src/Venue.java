@@ -92,7 +92,7 @@ public class Venue {
 
                 // If the new event completely swallows/envelops an existing event
                 if (this.startTime <= event.venue.startTime && TotalInMin >= event.venue.endTime) {
-                    System.out.println("Overlap detected (envelops another event)... Input different time \nENTER NEW VALUE :");
+                    System.out.println("Overlap detected... Input different time \nENTER NEW VALUE :");
                     return false;
                 }
             }
