@@ -154,15 +154,15 @@ public class Main {
                         cEvent.fillSpecificInfo(scnr);
 
                         System.out.print("Enter Event Date (Ex:dd/mm):");
-                        cEvent.venue.setDate(getUserInput(scnr));
+                        while(!cEvent.venue.setDate(getUserInput(scnr))){
+                            System.out.print("Invalid Date, Please Input Correct Values:   ");
+                        }
 
                         System.out.print("Enter Start Time in this format(EX 11:23):  ");
-                        while (!cEvent.venue.setStartTime(getUserInput(scnr))) {
-                        }
+                        while (!cEvent.venue.setStartTime(getUserInput(scnr), eventList)) {}
 
                         System.out.print("Enter End Time in this format(EX 13:23):  ");
-                        while (!cEvent.venue.setEndTime(getUserInput(scnr))) {
-                        }
+                        while (!cEvent.venue.setEndTime(getUserInput(scnr), eventList)) {}
 
                     }
                     break;
