@@ -37,6 +37,21 @@ public class Main {
         return input;
     }
 
+    public static int getUserNumInput(Scanner scnr){
+        int input =0;
+
+
+        if(scnr.hasNextInt()) {
+            input = Integer.parseInt(scnr.next());
+        }
+        else {
+            scnr.next();
+            input = -1;
+        }
+        scnr.nextLine();
+        return input;
+    }
+
     public static String getUserInput(Scanner scnr){
         String input = scnr.nextLine();
         return input;
@@ -150,6 +165,12 @@ public class Main {
                         System.out.print("Enter Event Name:  ");
                         cEvent.setEventName(getUserInput(scnr));
 
+                        System.out.print("Enter Sponsor Department:  ");
+                        cEvent.setSponsorDep(getUserInput(scnr));
+
+                        System.out.print("Enter Sponsor Person:  ");
+                        cEvent.setSponsorPerson(getUserInput(scnr));
+
                         specifyVenueObject(scnr, eventList, eventNum);
                         cEvent.fillSpecificInfo(scnr);
 
@@ -163,6 +184,12 @@ public class Main {
 
                         System.out.print("Enter End Time in this format(EX 13:23):  ");
                         while (!cEvent.venue.setEndTime(getUserInput(scnr), eventList)) {}
+
+                        System.out.print("Enter Event's Capacity:  ");
+                        while (!cEvent.venue.setCapacity(getUserNumInput(scnr))) {
+                            System.out.print("Invalid Capacity, MAXIMUM is "+cEvent.venue.getMaxCapacity()+"\nEnter new value:  ");
+                        }
+
 
                     }
                     break;
@@ -181,6 +208,7 @@ public class Main {
                 case 3:
                     System.out.println("Displaying Events");
                     System.out.println("Number of Events :" + eventList.size());
+
                     for(Event event : eventList){
                         System.out.println("\n=====================================");
                         System.out.println(event.toString());

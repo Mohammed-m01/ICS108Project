@@ -2,7 +2,7 @@ public class LectureHall extends Venue{
 
 
     public LectureHall(){
-        setCapacity(120);
+        setMaxCapacity(120);
         setLocation("Building 63 - Room 331 Lecture Hall");
     }
 

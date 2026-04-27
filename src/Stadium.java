@@ -1,7 +1,7 @@
 public class Stadium extends Venue{
 
     public Stadium(){
-        setCapacity(200);
+        setMaxCapacity(200);
         setLocation("Building 25-Stadium");
     }
 

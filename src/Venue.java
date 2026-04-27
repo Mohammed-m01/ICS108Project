@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 public class Venue {
-    private  int capacity;
+    private  int maxCapacity;
+    private int capacity;
     private String location;
     protected int startTime;// These values will be stored as a sum of total minutes.
     protected int endTime;
@@ -29,12 +30,12 @@ public class Venue {
         return date;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getMaxCapacity() {
+        return maxCapacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
     }
 
     public String getLocation() {
@@ -106,6 +107,19 @@ public class Venue {
     // To ensure the end is after the start.
     private boolean validateTime(int endTime){
         return endTime - startTime >= 0;
+    }
+
+    public boolean setCapacity(int capacity){
+        if(capacity > maxCapacity){
+            return false;
+        }
+        else if (capacity <= 0){
+            return false;
+        }
+        else{
+            this.capacity = capacity;
+            return true;
+        }
     }
 
 

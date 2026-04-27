@@ -1,7 +1,7 @@
 public class UniversityBeach extends Venue{
 
     public UniversityBeach(){
-        setCapacity(180);
+        setMaxCapacity(180);
         setLocation("University Beach");
     }
 

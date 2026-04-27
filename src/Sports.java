@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Sports extends Event {
     private String eventGenre = "Sports";
-    private String Sponsor = "PE-Dept -- Mr.Jack Roberson";
     private String sportName;
 
     @Override
@@ -13,7 +12,7 @@ public class Sports extends Event {
 
     @Override
     public String toString(){
-        return super.toString() +"Event Genre:  " + eventGenre +"\n" + "Sponsor:  " + Sponsor +"\n" + "Sport Name:  " + sportName
+        return super.toString() +"Event Genre:  " + eventGenre +"\n" + "Sport Name:  " + sportName
                 + venue.toString();
     }
 
