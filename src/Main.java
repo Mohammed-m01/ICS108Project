@@ -40,7 +40,7 @@ public class Main {
     }
     // Same logic as above, used to validate a numerical input
     public static int getUserNumInput(Scanner scnr){
-        int input =0;
+        int input;
 
         if(scnr.hasNextInt()) {
             input = scnr.nextInt();
@@ -54,8 +54,7 @@ public class Main {
     }
     // Used to receive a string input from a user
     public static String getUserInput(Scanner scnr){
-        String input = scnr.nextLine();
-        return input;
+        return scnr.nextLine();
     }
     // Method to receive the type of event
     public static int ChooseEvent(Scanner scnr){
@@ -225,6 +224,10 @@ public class Main {
                                     System.out.println("Returning to main menu...");
                                     break;
                                 default:
+                                    if (indexToRemove > eventList.size()) {
+                                        System.out.println("⚠ ERROR ⚠ Invalid Input. Make sure your # is included in the list.");
+                                        break;
+                                    }
                                     eventList.remove(indexToRemove-1);
                                     System.out.println("You have successfully removed this event!");
                             }
