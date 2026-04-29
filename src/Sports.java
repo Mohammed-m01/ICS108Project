@@ -6,7 +6,7 @@ public class Sports extends Event {
 
     @Override
     public void fillSpecificInfo(Scanner scnr){
-        System.out.print("Enter Sport Name:  ");
+        System.out.print("-------------------------------------------------------------------------\nSince you chose a Sports event, you need to provide the sport's name.\nEnter Sport Name:  ");
         sportName = scnr.nextLine();
     }
 
@@ -15,5 +15,8 @@ public class Sports extends Event {
         return super.toString() +"Event Genre:  " + eventGenre +"\n" + "Sport Name:  " + sportName
                 + venue.toString();
     }
-
+    @Override
+    public String getEventGenre() {
+        return eventGenre;
+    }
 }
