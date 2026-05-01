@@ -32,7 +32,8 @@ public abstract class Event {
 
     public abstract String getEventGenre();
 
-    public abstract void fillSpecificInfo(Scanner scnr); // This method is abstract because every subclass MUST provide its own implementation of it
+    // This method is abstract because every subclass MUST provide its own implementation of it
+    public abstract void fillSpecificInfo(Scanner scnr);
 
     @Override
     public String toString(){

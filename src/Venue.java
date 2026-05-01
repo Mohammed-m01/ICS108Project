@@ -54,6 +54,9 @@ public class Venue {
             return false;
         }
         String[] Time = startTime.split(":"); // Ex: If the input is 11:30, split it into "11" and "30"
+        if (Time[0].length() != 2 || Time[1].length() != 2 ) {
+            return false;
+        }
         int TotalInMin = Integer.parseInt(Time[1]) + 60 * Integer.parseInt(Time[0]); // Convert the event's time to minutes for easy comparisons
 
         for (Event event : eventlist) {
@@ -81,6 +84,9 @@ public class Venue {
             return false;
         }
         String[] Time = endTime.split(":");
+        if (Time[0].length() != 2 || Time[1].length() != 2 ) {
+            return false;
+        }
         int TotalInMin = Integer.parseInt(Time[1]) + 60 * Integer.parseInt(Time[0]);
 
         if (!validateTime(TotalInMin)) { // If validateTime is false, it means that the end time is before the starting time which will trigger the code below

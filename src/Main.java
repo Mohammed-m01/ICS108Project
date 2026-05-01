@@ -15,7 +15,8 @@ public class Main {
     // Method to display user options
     public static int displayMenu(Scanner scnr) {
 
-        System.out.println("-------------------------------------------------------------------------\n<< Main Menu >>\n");
+        System.out.println("-------------------------------------------------------------------------\n" +
+                "<< Main Menu >>\n");
 
         System.out.println("\uD835\uDFCF Add Event");
         System.out.println("\uD835\uDFD0 Remove Event");
@@ -58,7 +59,9 @@ public class Main {
     }
     // Method to receive the type of event
     public static int ChooseEvent(Scanner scnr){
-        System.out.println("-------------------------------------------------------------------------\n[\uD83D\uDD28 CREATING EVENT] To return to the main menu, press \uD835\uDFCE.\nChoose an event genre:");
+        System.out.println("-------------------------------------------------------------------------\n" +
+                "[\uD83D\uDD28 CREATING EVENT] To return to the main menu, press \uD835\uDFCE.\n" +
+                "Choose an event genre:");
 
         System.out.println("\uD835\uDFCF Sports");
         System.out.println("\uD835\uDFD0 Social");
@@ -70,7 +73,9 @@ public class Main {
     }
     // Method to assign the venue
     public static int ChooseVenue(Scanner scnr){
-        System.out.println("-------------------------------------------------------------------------\n[\uD83D\uDCCD CHOOSING VENUE] To return to the main menu, press \uD835\uDFCE.\nChoose a venue to host the event on: \n");
+        System.out.println("-------------------------------------------------------------------------\n" +
+                "[\uD83D\uDCCD CHOOSING VENUE] To return to the main menu, press \uD835\uDFCE.\n" +
+                "Choose a venue to host the event on: \n");
 
         System.out.println("\uD835\uDFCF Stadium");
         System.out.println("\uD835\uDFD0 University Beach");
@@ -80,6 +85,16 @@ public class Main {
         return getUserOption(scnr);
 
     }
+    // Method to print "X event created!"
+    public static void printEvent(String eventName) {
+        System.out.println("-------------------------------------------------------------------------\n" +
+                eventName + " Event Created!");
+    }
+    // Method to print "Done. This event will be hosted in X."
+    public static void printVenue(String venueName) {
+        System.out.println("Sweet! This event will be hosted in the " + venueName + ".");
+    }
+
 
     public static void createEventObject(Scanner scnr, ArrayList<Event> eventList){
         while (true) {
@@ -91,19 +106,19 @@ public class Main {
                     return;
                 case 1: // If the user inputs 1, a Sports event is created
                     eventList.add(new Sports()); // The event is added to the event list
-                    System.out.println("-------------------------------------------------------------------------\nSports Event Created!");
+                    printEvent("Sports"); // Print ------------ Sports event created! using the method above
                     return;
                 case 2:
                     eventList.add(new Social());
-                    System.out.println("-------------------------------------------------------------------------\nSocial Event Created!");
+                    printEvent("Social");
                     return;
                 case 3:
                     eventList.add(new Religious());
-                    System.out.println("-------------------------------------------------------------------------\nReligious Event Created!");
+                    printEvent("Religious");
                     return;
                 case 4:
                     eventList.add(new Academic());
-                    System.out.println("-------------------------------------------------------------------------\nAcademic Event Created!");
+                    printEvent("Academic");
                     return;
                 default: // If the above cases fail, then the input is definitely invalid
                     System.out.println("⚠ ERROR ⚠ Invalid Input. Please make sure you provide an integer.");
@@ -123,19 +138,19 @@ public class Main {
                     return false;
                 case 1:
                     event.venue = new Stadium(); // The venue is assigned to the event
-                    System.out.println("Sweet! This event will be hosted in the Stadium.");
+                    printVenue("Stadium");
                     return true;
                 case 2:
                     event.venue = new UniversityBeach();
-                    System.out.println("Sweet! This event will be hosted in the University Beach.");
+                    printVenue("University Beach");
                     return true;
                 case 3:
                     event.venue = new ConferenceHall();
-                    System.out.println("Sweet! This event will be hosted in the Conference Hall.");
+                    printVenue("Conference Hall");
                     return true;
                 case 4:
                     event.venue = new LectureHall();
-                    System.out.println("Sweet! This event will be hosted in the Lecture Hall.");
+                    printVenue("Lecture Hall");
                     return true;
                 default:
                     System.out.println("⚠ ERROR ⚠ Invalid Input. Please make sure you provide a correct input.");
@@ -177,10 +192,12 @@ public class Main {
                             eventList.remove(eventNum); // Remove the event because the event creation process was cancelled
                             break; // Return to the main menu
                         }
-                        cEvent.fillSpecificInfo(scnr); // This is polymorphism in real time: it behaves differently depending on the user input
+                        // This is polymorphism in real time: it behaves differently depending on the user input
+                        cEvent.fillSpecificInfo(scnr);
 
                         // Make sure the events don't overlap
-                        System.out.print("-------------------------------------------------------------------------\nGood stuff! Now, please provide the date and time for this event.\nEnter Event Date (Ex:dd/mm):");
+                        System.out.print("-------------------------------------------------------------------------\n" +
+                                "Good stuff! Now, please provide the date and time for this event.\nEnter Event Date (Ex:dd/mm):");
                         while(!cEvent.venue.setDate(getUserInput(scnr))){
                             System.out.print("⚠ ERROR ⚠ Invalid Date. Please make sure you follow the correct entry format.\nEnter Event Date (Ex:dd/mm):   ");
                         }
@@ -195,7 +212,8 @@ public class Main {
                             System.out.print("⚠ ERROR ⚠ Invalid End Time. Please make sure you follow the correct entry format.\nEnter End Time (Ex: 13:23):   ");
                         }
 
-                        System.out.print("-------------------------------------------------------------------------\nFinally, how many people are attending this "
+                        System.out.print("-------------------------------------------------------------------------\n" +
+                                "Finally, how many people are attending this "
                                 + cEvent.getEventName() + " " + cEvent.getEventGenre()
                                 + " event? Keep in mind that the " + cEvent.venue.getLocation()
                                 + " can only host a maximum amount of " + cEvent.venue.getMaxCapacity()
@@ -212,7 +230,7 @@ public class Main {
                         System.out.println("⚠ ERROR ⚠ There are no events to remove. Please create an event first.");
                     } else {
                         System.out.println("-------------------------------------------------------------------------\n[⌫ EVENT REMOVAL] To return to the main menu, press \uD835\uDFCE");
-                        int pos = 0;
+                        int pos;
                         for (int i = 0; i < eventList.size(); ++i) {
                             pos = i + 1;
                             System.out.println("(" + pos + ") '"+ eventList.get(i).getEventName() + "' " + eventList.get(i).getEventGenre() + " Event");
@@ -220,11 +238,11 @@ public class Main {
                         System.out.print("\nChoose # of event to remove:  ");
                         int indexToRemove = getUserOption(scnr);
                             switch (indexToRemove) {
-                                case 0:
+                                case 0: // if 0 is chosen, return to main menu
                                     System.out.println("Returning to main menu...");
                                     break;
                                 default:
-                                    if (indexToRemove > eventList.size()) {
+                                    if (indexToRemove > eventList.size()) { // if input number is not included in the list
                                         System.out.println("⚠ ERROR ⚠ Invalid Input. Make sure your # is included in the list.");
                                         break;
                                     }
