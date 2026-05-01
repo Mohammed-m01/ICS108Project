@@ -53,12 +53,21 @@ public class Venue {
         if (!startTime.contains(":")) {
             return false;
         }
-        String[] Time = startTime.split(":"); // Ex: If the input is 11:30, split it into "11" and "30"
-        if (Time[0].length() != 2 || Time[1].length() != 2 ) {
+        String[] Time = startTime.split(":");
+        if (Time[0].length() != 2 || Time[1].length() != 2 ) { // Return an error if the input is 133:12 for example
             return false;
         }
-        int TotalInMin = Integer.parseInt(Time[1]) + 60 * Integer.parseInt(Time[0]); // Convert the event's time to minutes for easy comparisons
-
+        int TotalInMin;
+        try {
+            int num1 = Integer.parseInt(Time[0]); // The left side of the time (11:)
+            int num2 = Integer.parseInt(Time[1]); // The right side of the time (:23)
+            if (num1 < 0 || num2 < 0) { // If input is (-1:23) for example
+                throw new Exception();
+            }
+            TotalInMin = num1 + 60 * num2;
+        } catch(Exception e) {
+            return false;
+        }
         for (Event event : eventlist) {
             // Skip checking the current event against itself
             if (event.venue == this) continue;
@@ -84,10 +93,21 @@ public class Venue {
             return false;
         }
         String[] Time = endTime.split(":");
-        if (Time[0].length() != 2 || Time[1].length() != 2 ) {
+        if (Time[0].length() != 2 || Time[1].length() != 2 ) { // Return an error if the input is 133:12 for example
             return false;
         }
-        int TotalInMin = Integer.parseInt(Time[1]) + 60 * Integer.parseInt(Time[0]);
+        int TotalInMin;
+        try {
+            int num1 = Integer.parseInt(Time[0]); // The left side of the time (11:)
+            int num2 = Integer.parseInt(Time[1]); // The right side of the time (:23)
+            if (num1 < 0 || num2 < 0) { // If input is (-1:23) for example
+                throw new Exception();
+            }
+            TotalInMin = num1 + 60 * num2;
+        } catch(Exception e) {
+            return false;
+        }
+        //int TotalInMin = Integer.parseInt(Time[1]) + 60 * Integer.parseInt(Time[0]);
 
         if (!validateTime(TotalInMin)) { // If validateTime is false, it means that the end time is before the starting time which will trigger the code below
             System.out.println("Wrong Time...end time must be after starting time...");
