@@ -6,7 +6,8 @@ public class Social extends Event {
 
     @Override
     public void fillSpecificInfo(Scanner scnr){
-        System.out.print("-------------------------------------------------------------------------\nSince you chose a Social event, you need to provide the dinner meal.\nEnter Dinner Meal:  ");
+        Decoration.decorate();
+        System.out.print("Since you chose a Social event, you need to provide the dinner meal.\nEnter Dinner Meal:  ");
         dinnerMeal = scnr.nextLine();
     }
 

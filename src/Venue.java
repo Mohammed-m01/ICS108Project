@@ -15,9 +15,11 @@ public class Venue {
         if (!date.contains("/")) {
             return false;
         }
-        String[] dateL = date.split("/"); // Ex: If the input (dd/mm) is in the format 23/12, the string will split into "23" and "12"
+        // Ex: If the input (dd/mm) is in the format 23/12, the string will split into "23" and "12"
+        String[] dateL = date.split("/");
 
-        if (Integer.parseInt(dateL[1]) > 12 || Integer.parseInt(dateL[0]) >31) // Convert the string to integer, and validate it. Index 1 is for months, Index 0 is for days
+        // Convert the string to integer, and validate it. Index 1 is for months, Index 0 is for days
+        if (Integer.parseInt(dateL[1]) > 12 || Integer.parseInt(dateL[0]) >31)
             return false;
 
         else if (Integer.parseInt(dateL[1]) <=0 || Integer.parseInt(dateL[0]) <=0) // Check if non-negative.
@@ -54,16 +56,16 @@ public class Venue {
             return false;
         }
         String[] Time = startTime.split(":");
-        if (Time[0].length() != 2 || Time[1].length() != 2 ) { // Return an error if the input is 133:12 for example
-            return false;
-        }
         int TotalInMin;
         try {
             int num1 = Integer.parseInt(Time[0]); // The left side of the time (11:)
             int num2 = Integer.parseInt(Time[1]); // The right side of the time (:23)
-            if (num1 < 0 || num2 < 0) { // If input is (-1:23) for example
+            if (num1 < 0 || num2 < 0)  // If input is (-1:23) for example
                 throw new Exception();
-            }
+
+            else if(num1 >= 24 || num2 >= 60)
+                throw new Exception();
+
             TotalInMin = num1 + 60 * num2;
         } catch(Exception e) {
             return false;
@@ -93,16 +95,16 @@ public class Venue {
             return false;
         }
         String[] Time = endTime.split(":");
-        if (Time[0].length() != 2 || Time[1].length() != 2 ) { // Return an error if the input is 133:12 for example
-            return false;
-        }
         int TotalInMin;
         try {
             int num1 = Integer.parseInt(Time[0]); // The left side of the time (11:)
             int num2 = Integer.parseInt(Time[1]); // The right side of the time (:23)
-            if (num1 < 0 || num2 < 0) { // If input is (-1:23) for example
+            if (num1 < 0 || num2 < 0 )  // If input is (-1:23) for example
                 throw new Exception();
-            }
+
+            else if(num1 >= 24 || num2 >= 60)
+                throw new Exception();
+
             TotalInMin = num1 + 60 * num2;
         } catch(Exception e) {
             return false;

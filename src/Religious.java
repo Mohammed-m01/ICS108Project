@@ -7,7 +7,8 @@ public class Religious extends Event{
 
     @Override
     public void fillSpecificInfo(Scanner scnr){
-        System.out.print("-------------------------------------------------------------------------\nSince you chose a Religious event, you need to provide the winner's award.\nEnter the winner's award:  ");
+        Decoration.decorate();
+        System.out.print("Since you chose a Religious event, you need to provide the winner's award.\nEnter the winner's award:  ");
         winnersAward = scnr.next();
 
     }

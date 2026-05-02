@@ -1,6 +1,5 @@
 public class ConferenceHall extends Venue{
 
-
     public ConferenceHall(){
         setMaxCapacity(30);
         setLocation("Building 24-Conference Hall");

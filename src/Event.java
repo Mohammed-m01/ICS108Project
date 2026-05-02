@@ -5,7 +5,7 @@ public abstract class Event {
     private String eventName;
     private String SponsorDep;
     private String SponsorPerson;
-    protected Venue venue; // Protected so we can inherit it in subclasses. If it was private, the variable would not be accessible in other subclasses
+    protected Venue venue; // If it was private, the variable would not be accessible in other subclasses
 
     // Member Methods
     public String getEventName() {

@@ -5,7 +5,9 @@ public class Academic extends Event {
 
     @Override
     public void fillSpecificInfo(Scanner scnr){
-        System.out.print("-------------------------------------------------------------------------\nSince you chose an Academic event, you need to provide the lecturer's name.\nEnter Lecturer's Name:  ");
+        Decoration.decorate();
+        System.out.println("Since you chose an Academic event, you need to provide the lecturer's name.");
+        System.out.print("Enter Lecturer's Name:  ");
         lecturer = scnr.nextLine();
     }
 
