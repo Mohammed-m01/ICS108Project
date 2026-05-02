@@ -66,7 +66,7 @@ public class Venue {
             else if(num1 >= 24 || num2 >= 60)
                 throw new Exception();
 
-            TotalInMin = num1 + 60 * num2;
+            TotalInMin = num1 * 60 + num2;
         } catch(Exception e) {
             return false;
         }
@@ -105,7 +105,7 @@ public class Venue {
             else if(num1 >= 24 || num2 >= 60)
                 throw new Exception();
 
-            TotalInMin = num1 + 60 * num2;
+            TotalInMin = num1 * 60 + num2;
         } catch(Exception e) {
             return false;
         }
