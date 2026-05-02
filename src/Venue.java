@@ -15,8 +15,13 @@ public class Venue {
         if (!date.contains("/")) {
             return false;
         }
+
         // Ex: If the input (dd/mm) is in the format 23/12, the string will split into "23" and "12"
         String[] dateL = date.split("/");
+
+        if (dateL.length != 2) {
+            return false;
+        }
 
         // Convert the string to integer, and validate it. Index 1 is for months, Index 0 is for days
         if (Integer.parseInt(dateL[1]) > 12 || Integer.parseInt(dateL[0]) >31)
