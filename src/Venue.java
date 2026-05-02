@@ -22,17 +22,21 @@ public class Venue {
         if (dateL.length != 2) {
             return false;
         }
+        try {
+            // Convert the string to integer, and validate it. Index 1 is for months, Index 0 is for days
+            if (Integer.parseInt(dateL[1]) > 12 || Integer.parseInt(dateL[0]) > 31)
+                return false;
 
-        // Convert the string to integer, and validate it. Index 1 is for months, Index 0 is for days
-        if (Integer.parseInt(dateL[1]) > 12 || Integer.parseInt(dateL[0]) >31)
+            else if (Integer.parseInt(dateL[1]) <= 0 || Integer.parseInt(dateL[0]) <= 0) // Check if non-negative.
+                return false;
+
+            else { // Return the correct date if it passes the checks
+                this.date = date;
+                return true;
+            }
+        }catch (Exception e){
             return false;
-
-        else if (Integer.parseInt(dateL[1]) <=0 || Integer.parseInt(dateL[0]) <=0) // Check if non-negative.
-            return false;
-
-        else{ // Return the correct date if it passes the checks
-            this.date = date;
-            return true;}
+        }
     }
 
     public String getDate() {
