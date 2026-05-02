@@ -142,7 +142,7 @@ public class Venue {
 
     // To ensure the end is after the start.
     private boolean validateTime(int endTime){
-        return endTime - startTime >= 0; // Since we converted the time to minutes, we can easily check
+        return endTime > startTime ; // Since we converted the time to minutes, we can easily check
     }
 
     // Check if the capacity entered is sufficient for the venue's designated amount
