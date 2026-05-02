@@ -265,7 +265,7 @@ public class Main {
                                     System.out.println("Returning to main menu...");
                                     break;
                                 default:
-                                    if (indexToRemove > eventList.size()) { // if input number is not included in the list
+                                    if (indexToRemove > eventList.size() || indexToRemove < 0 ) { // if input number is not included in the list
                                         Decoration.CustomErrorMessage("Invalid Input","Make sure your # is included in the list");
                                         break;
                                     }
